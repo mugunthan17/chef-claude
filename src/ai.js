@@ -1,6 +1,5 @@
 import { HfInference } from "@huggingface/inference";
 
-// Load the API key from the environment variables
 const apiKey = process.env.REACT_APP_HF_API_KEY;
 
 if (!apiKey) {
@@ -11,7 +10,6 @@ if (!apiKey) {
 
 const hf = new HfInference(apiKey);
 
-// Function to fetch recipe suggestions
 export async function getRecipeFromMistral(ingredientsArr) {
     const ingredientsString = ingredientsArr.join(", ");
 
@@ -21,14 +19,13 @@ export async function getRecipeFromMistral(ingredientsArr) {
     }
 
     try {
-        // Make a request to the Hugging Face API
         const response = await hf.chatCompletion({
             model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
             messages: [
                 { role: "system", content: "You are a recipe assistant." },
                 { role: "user", content: `I have ${ingredientsString}. Please recommend a recipe.` },
             ],
-            max_tokens: 500, // Adjust token limit based on your needs
+            max_tokens: 500, 
         });
 
         if (response?.choices?.length > 0) {

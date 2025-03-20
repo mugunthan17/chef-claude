@@ -1,6 +1,5 @@
 import { HfInference } from "@huggingface/inference";
 import "dotenv/config";
-// Load the API key from environment variables
 const API_KEY = process.env.REACT_APP_HF_API_KEY;
 
 if (!API_KEY) {
